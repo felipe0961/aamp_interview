@@ -5,26 +5,43 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	<title>Contacts Manager</title>
+		<link rel="stylesheet" href="styles/css/aamp.css">
 		<link rel="stylesheet" href="styles/css/bootstrap.css">
 		<link rel="stylesheet" href="styles/css/bootstrap-table.min.css">
-		<link rel="stylesheet" href="styles/css/aamp.css">
+		<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"> -->
 	</head>
 	<body>
 
 <div id = "main">
 	<h1>Contact Manager</h1>		
-	<table data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-toggle="table">
-    <thead>
-    <tr>
-        <th data-field="id" data-align="right">Item ID</th>
-        <th data-field="name" data-align="center">Item Name</th>
-        <th data-field="price" data-align="left">Item Price</th>
-    </tr>
-    </thead>
-</table>
+	<table data-url="data1.json" data-height="389" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-toggle="table">
+    	<thead>
+    		<tr>
+    		    <th data-field="id" data-align="right">Item ID</th>
+    		    <th data-field="name" data-align="center">Item Name</th>
+    		    <th data-field="price" data-align="left">Item Price</th>
+    		</tr>
+    	</thead>
+	</table>
+	<button id = "delete_contact" type="delete" class="btn btn-default btn-right">Delete Contact</button>
+	<button id = "new_contact" type="new" class="btn btn-default btn-right">New Contact</button>
 <div>
 
-
+<div id="dialog-form" title="Create new user">
+  <p class="validateTips">All form fields are required.</p>
+ 
+  <form>
+    <fieldset>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+ 
+      <!-- Allow <font></font>rm submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
 
 
 
@@ -32,5 +49,7 @@
 
 		<script src="styles/js/jquery.js"></script>
 		<script src="styles/js/bootstrap-table.min.js"></script>
+		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+		<script src="styles/js/aamp.js"></script>
 	</body>
 </html>
