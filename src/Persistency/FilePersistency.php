@@ -7,7 +7,7 @@ class FilePersistency implements Persistency {
    *
    * @var File Resource
    */
-	private $persistency_file
+	private $persistency_file;
 
 	/**
    * Open a file where the information is saved. 
@@ -18,31 +18,32 @@ class FilePersistency implements Persistency {
   }
 
   /**
-   * Get persistency file name 
+   * Get persitency file name 
    * Open it content
    * If the file is not open trow and exception
    */ 
-  protected load_peristency_file() {
-  	$file_name = get_persistency_file_name();
-  	$this->persistency_file = fopen( $file_name, "rw");
+  protected function load_peristency_file() {
+  	$file_name = $this->get_persistency_file_name();
+  	$this->persistency_file = fopen( "../../data/$file_name", "rw");
   	
-  	if (!$this->$persistency_file) {
+  	if (!$this->persistency_file) {
   		throw new Exception ("Unable open the persistency !");
   	}	
   }
 
   /**
    * Read from the configuration file 
-   * Find where the persisten file is  
+   * Find where the persistent file is  
    * If the file name is not found throw an exception
    */
-  protected get_persistency_file_name(){
-  	$config_file = fopen( "AAMP.conf", "r");
-  	$file = json_decode($config_file, true)["persitency_file"];
+  protected function get_persistency_file_name(){
+  	$config_file = file_get_contents( "../../data/AAMP.conf", "r");
+  	$file = json_decode($config_file, true)["persistency_file"];
 
   	if ($file === null) {
-  		throw new Exception ("Missing varible persistency_file in conf file");
+  		throw new Exception ("Missing variable persistency_file in configuration file");
   	}
+    return $file;
   }
 
   /**
@@ -66,6 +67,34 @@ class FilePersistency implements Persistency {
  	public function __destruct() {
     	fclose($this->persistency_file);
   }
+
+    public function create($string){
+
+    }
+    
+    /**
+     * Read information. 
+     * @param string $contact contact information.
+     */
+    public function read($string){
+
+    }
+    
+    /**
+     * Update information. 
+     * @param string $contact contact information.
+     */
+    public function update($string){
+
+    }
+    
+    /**
+     * Delete information 
+     * @param string $contact contact information.
+     */
+    public function delete($string){
+      
+    }
 }
 
 ?>
