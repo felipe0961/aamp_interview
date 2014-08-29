@@ -6,25 +6,25 @@ interface Persistency
      * Create new conctact. 
      * @param string $string contact information.
      */ 
-    public function create($string);
+    public function insert($array);
     
     /**
      * Read information. 
      * @param string $contact contact information.
      */
-    public function read($string);
+    public function read();
     
     /**
      * Update information. 
      * @param string $contact contact information.
      */
-    public function update($string);
+    public function update($array);
     
     /**
      * Delete information 
      * @param string $contact contact information.
      */
-    public function delete($string);
+    public function delete($array);
     
 }
 

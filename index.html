@@ -8,18 +8,20 @@
 		<link rel="stylesheet" href="styles/css/aamp.css">
 		<link rel="stylesheet" href="styles/css/bootstrap.css">
 		<link rel="stylesheet" href="styles/css/bootstrap-table.min.css">
-		<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"> -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 	</head>
 	<body>
 
 <div id = "main">
 	<h1>Contact Manager</h1>		
-	<table data-url="data1.json" data-height="389" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-toggle="table">
+	<table data-url="ajax.php?method=read" data-height="389" data-show-refresh="true"  data-search="true" data-toggle="table" id="table1" >
     	<thead>
     		<tr>
-    		    <th data-field="id" data-align="right">Item ID</th>
-    		    <th data-field="name" data-align="center">Item Name</th>
-    		    <th data-field="price" data-align="left">Item Price</th>
+            <th data-checkbox="true" data-align="center">Select</th>
+    		    <th data-field="name" data-align="center">Name</th>
+    		    <th data-field="email" data-align="center">Email</th>
+            <th data-field="id" data-visible="false" data-align="center">id</th>
+            
     		</tr>
     	</thead>
 	</table>
@@ -29,18 +31,24 @@
 
 <div id="dialog-form" title="Create new user">
   <p class="validateTips">All form fields are required.</p>
- 
+  <br/>
   <form>
     <fieldset>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+      <label for="name">Name </label>
+      <input type="text" name="name" id="name_form" value="" class="text ui-widget-content ui-corner-all"><br/>
       <label for="email">Email</label>
-      <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="email" id="email_form" value="" class="text ui-widget-content ui-corner-all">
  
       <!-- Allow <font></font>rm submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
   </form>
+</div>
+
+
+
+<div id="dialog" title="Basic dialog">
+  <p>Your Information has been saved :)</p>
 </div>
 
 

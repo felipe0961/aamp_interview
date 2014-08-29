@@ -1,17 +1,18 @@
 <?php
-	require_once('Model.php');
+	require_once('ActiveRecord.php');
 
-	class Contact extends Model {
+	class Contact extends ActiveRecord {
 		protected $email;
+		protected $id;
 		protected $name;
+		static $contact_count = 0;
 
-		public function __construct($name, $email) {	
+		public function __construct($name = "", $email = "") {	
+      parent::__construct();
 			$this->name	 = $name;
 			$this->email = $email;
+      $contact_count = count($this->read());
+			$this->id = $contact_count++;
 		}
 	}
-
-
-	$a = new Contact("Luis", "Hell");
-	echo $a->to_json();
 ?>

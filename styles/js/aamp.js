@@ -1,25 +1,30 @@
 
 function addUser() {
-    var valid = true;
-    allFields.removeClass( "ui-state-error" );
- 
-    valid = valid && checkLength( name, "username", 3, 16 );
-    valid = valid && checkLength( email, "email", 6, 80 );
-    valid = valid && checkLength( password, "password", 5, 16 );
- 
-    valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-    valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-    valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
- 
-    if ( valid ) {
-      $( "#users tbody" ).append( "<tr>" +
-        "<td>" + name.val() + "</td>" +
-        "<td>" + email.val() + "</td>" +
-      "</tr>" );
-      dialog.dialog( "close" );
-    }
-    return valid;
+  $.ajax({
+    type: "GET",
+    url: "ajax.php?",
+    data: { method: "new", name: $("#name_form").val(), email: $("#email_form").val()}
+  })
+  .done(function( msg ) {
+    $( "#dialog" ).dialog();
+    dialog.dialog( "close" );
+    $('[name="refresh"]').click();
+  });
+  return true;
 }
+
+$( "#dialog" ).dialog({
+  autoOpen: false,
+  show: {
+    effect: "blind",
+    duration: 1000
+  },
+  hide: {
+    effect: "explode",
+    duration: 1000
+  }
+});
+
 
 
 dialog = $( "#dialog-form" ).dialog({
@@ -28,14 +33,15 @@ dialog = $( "#dialog-form" ).dialog({
    width: 350,
    modal: true,
    buttons: {
-     "Create an account": addUser,
+     "Create Contact": addUser,
      Cancel: function() {
        dialog.dialog( "close" );
      }
    },
    close: function() {
-     form[ 0 ].reset();
-     allFields.removeClass( "ui-state-error" );
+    dialog.dialog( "close" );
+     //form[ 0 ].reset();
+     //allFields.removeClass( "ui-state-error" );
    }
 });
 
@@ -44,6 +50,22 @@ $( "#new_contact" ).button().on( "click", function() {
 })
 
 $( "#delete_contact" ).button().on( "click", function() {
-    alert("Hola");
+    var objects = $('#table1').bootstrapTable('getSelections');
+    var ids = new Array();
+    for(var i = 0; i <= objects.length; i++){
+      ids.push(objects["id"]);
+    }
+
+    $.ajax({
+    type: "GET",
+    url: "ajax.php?",
+    data: { method: "delete", id: ids }
+  })
+  .done(function( msg ) {
+    $( "#dialog" ).dialog();
+    dialog.dialog( "close" );
+    $('[name="refresh"]').click();
+  });
+
     //dialog.dialog( "open" );
 })
