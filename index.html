@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>Contacts Manager</title>
-		<link rel="stylesheet" href="styles/css/aamp.css">
-		<link rel="stylesheet" href="styles/css/bootstrap.css">
-		<link rel="stylesheet" href="styles/css/bootstrap-table.min.css">
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-	</head>
-	<body>
-
-<div id = "main">
-	<h1>Contact Manager</h1>		
-	<table data-url="ajax.php?method=read" data-height="389" data-show-refresh="true"  data-search="true" data-toggle="table" id="table1" >
-    	<thead>
-    		<tr>
-            <th data-checkbox="true" data-align="center">Select</th>
-    		    <th data-field="name" data-align="center">Name</th>
-    		    <th data-field="email" data-align="center">Email</th>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacts Manager</title>
+    <link rel="stylesheet" href="styles/css/aamp.css">
+    <link rel="stylesheet" href="styles/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  </head>
+  <body>
+    <div id = "main">
+      <h1>Contact Manager</h1>
+      <!-- Contact Table -->
+      <table data-url="ajax.php?method=read" data-height="389" data-show-refresh="true"  data-search="true" data-toggle="table" id="table1" >
+        <thead>
+          <tr>
+            <th data-field="name" data-align="center">Name</th>
+            <th data-field="email" data-align="center">Email</th>
             <th data-field="id" data-visible="false" data-align="center">id</th>
-            
-    		</tr>
-    	</thead>
-	</table>
-	<button id = "delete_contact" type="delete" class="btn btn-default btn-right">Delete Contact</button>
-	<button id = "new_contact" type="new" class="btn btn-default btn-right">New Contact</button>
-<div>
+            <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents"
+              data-align="center">Options</th>
+          </tr>
+        </thead>
+      </table>
+      <button id = "new_contact" type="new" class="btn btn-default btn-right">New Contact</button>
+    <div>
+    <!-- Create new contact form--> 
+    <div id="dialog-form" title="Create Contact">
+      <p class="validateTips">All form fields are required.</p>
+      <br/>
+      <form>
+        <fieldset>
+          <label for="name">Name </label>
+          <input type="text" name="name" id="name_form" value="" class="text ui-widget-content ui-corner-all"><br/>
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email_form" value="" class="text ui-widget-content ui-corner-all">
+          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+      </form>
+    </div>
+    <!-- Edit new contact Form-->
+    <div id="edit-form" title="Edit Contact">
+      <p class="validateTips">All form fields are required.</p>
+      <br/>
+      <form>
+        <fieldset>
+          <label for="name">Name </label>
+          <input type="text" name="name" id="edit_name_form" value="" class="text ui-widget-content ui-corner-all"><br/>
+          <label for="email">Email</label>
+          <input type="text" name="email" id="edit_email_form" value="" class="text ui-widget-content ui-corner-all">
+          <input type="hidden" name="email" id="edit_id_form" value="" class="text ui-widget-content ui-corner-all">
+          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+      </form>
+    </div>
+    <!-- Success save dialog -->
+    <div id="dialog" title="Basic dialog">
+      <p>Your Information has been saved :)</p>
+    </div>
 
-<div id="dialog-form" title="Create new user">
-  <p class="validateTips">All form fields are required.</p>
-  <br/>
-  <form>
-    <fieldset>
-      <label for="name">Name </label>
-      <input type="text" name="name" id="name_form" value="" class="text ui-widget-content ui-corner-all"><br/>
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email_form" value="" class="text ui-widget-content ui-corner-all">
- 
-      <!-- Allow <font></font>rm submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
-  </form>
-</div>
-
-
-
-<div id="dialog" title="Basic dialog">
-  <p>Your Information has been saved :)</p>
-</div>
-
-
-
-
-
-		<script src="styles/js/jquery.js"></script>
-		<script src="styles/js/bootstrap-table.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-		<script src="styles/js/aamp.js"></script>
-	</body>
+    <script src="styles/js/jquery.js"></script>
+    <script src="styles/js/bootstrap-table.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="styles/js/aamp.js"></script>
+  </body>
 </html>

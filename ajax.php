@@ -10,13 +10,18 @@
 		case 'delete':
 			$contact = new Contact();
 			$contact->__set("id",$_GET["id"]);
-  			$contact->delete();
+  		$contact->delete();
 			break;
 		case 'update':
 			$name = isset($_GET["name"]) ? $_GET["name"] : "" ;
 			$email = isset($_GET["email"]) ? $_GET["email"] : "" ;
-			$contact = new Contact();
-  			$contact->update();
+			$id = isset($_GET["id"]) ? $_GET["id"] : "" ;
+			if ( $id == "" ){
+				return false;
+			}
+			$contact = new Contact($name, $email);
+			$contact->__set("id",$_GET["id"]);
+  		$contact->update();
 			break;
 		case 'read':
 			$contact = new Contact();

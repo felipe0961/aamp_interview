@@ -5,12 +5,12 @@ class FilePersistency implements Persistency {
 	/**
    * Variable where the file information is going to be held.
    *
-   * @var Array infor
+   * @var Array 
    */
 	private $content = array();
 
   /**
-   * contains the fa.
+   * Contains the file name where informaction is going to be save.
    *
    * @var String where the file is going to be save
    */
@@ -112,16 +112,18 @@ class FilePersistency implements Persistency {
       return false;
     }
 
-
-    $this->content[$position]->name = $array["name"] ? $array["name"] : $this->content[$position]->name;
-    $this->content[$position]->email = $array["email"] ? $array["email"] : $this->content[$position]->name;
+    $this->content[$position]->name = 
+      $array["name"] ? $array["name"] : $this->content[$position]->name;
+    $this->content[$position]->email = 
+      $array["email"] ? $array["email"] : $this->content[$position]->name;
+    
     $this->write_to_disk();
     return true;
   }
     
   /**
    * Delete information 
-   * @param JSON $array Active Record Information.
+   * @param Array $array Active Record Information.
    */
   public function delete($array){
     $position = $this->find($array);  
